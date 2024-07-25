@@ -28,17 +28,16 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @ContextConfiguration(classes = {MeetingRoomBookingsController.class})
 @ExtendWith(SpringExtension.class)
 @DisabledInAotMode
-class MeetingRoomBookingsControllerDiffblueTest {
+class MeetingRoomBookingsControllerTest {
   @MockBean private ContextDetails contextDetails;
 
   @Autowired private MeetingRoomBookingsController meetingRoomBookingsController;
 
   @MockBean private MeetingRoomService meetingRoomService;
 
-  /** Method under test: {@link MeetingRoomBookingsController#getBookedRooms()} */
   @Test
   void testGetBookedRooms2() throws Exception {
-    // Arrange
+
     when(contextDetails.getEmpId()).thenReturn(null);
 
     BookingInfo bookingInfo = new BookingInfo();
@@ -48,7 +47,6 @@ class MeetingRoomBookingsControllerDiffblueTest {
     MockHttpServletRequestBuilder requestBuilder =
         MockMvcRequestBuilders.get("/workspot/room/bookings");
 
-    // Act and Assert
     MockMvcBuilders.standaloneSetup(meetingRoomBookingsController)
         .build()
         .perform(requestBuilder)
@@ -67,10 +65,9 @@ class MeetingRoomBookingsControllerDiffblueTest {
                         + "\"roomNumber\":5,\"floorNumber\":10,\"capacity\":15}]}"));
   }
 
-  /** Method under test: {@link MeetingRoomBookingsController#confirmSeat(SeatConfirmDTO)} */
   @Test
   void testConfirmSeat() throws Exception {
-    // Arrange
+
     when(meetingRoomService.reserveSeatForBookingId(Mockito.<SeatConfirmDTO>any()))
         .thenReturn(new MeetingRoomBookingReferences());
 
@@ -83,7 +80,6 @@ class MeetingRoomBookingsControllerDiffblueTest {
             .contentType(MediaType.APPLICATION_JSON)
             .content(content);
 
-    // Act and Assert
     MockMvcBuilders.standaloneSetup(meetingRoomBookingsController)
         .build()
         .perform(requestBuilder)
@@ -92,13 +88,9 @@ class MeetingRoomBookingsControllerDiffblueTest {
         .andExpect(MockMvcResultMatchers.content().string("{\"bookingId\":null,\"status\":null}"));
   }
 
-  /**
-   * Method under test: {@link
-   * MeetingRoomBookingsController#createRoomBooking(MeetingRoomBookingCreateDTO)}
-   */
   @Test
   void testCreateRoomBooking() throws Exception {
-    // Arrange
+
     MeetingRoomBookingCreateDTO meetingRoomBookingCreateDTO = new MeetingRoomBookingCreateDTO();
     meetingRoomBookingCreateDTO.setDate("2020-03-01");
     meetingRoomBookingCreateDTO.setEmpId(1);
@@ -113,26 +105,22 @@ class MeetingRoomBookingsControllerDiffblueTest {
             .contentType(MediaType.APPLICATION_JSON)
             .content(content);
 
-    // Act
     ResultActions actualPerformResult =
         MockMvcBuilders.standaloneSetup(meetingRoomBookingsController)
             .build()
             .perform(requestBuilder);
 
-    // Assert
     actualPerformResult.andExpect(MockMvcResultMatchers.status().is(400));
   }
 
-  /** Method under test: {@link MeetingRoomBookingsController#getBookedRooms()} */
   @Test
   void testGetBookedRooms() throws Exception {
-    // Arrange
+
     when(contextDetails.getEmpId()).thenReturn(1);
     when(meetingRoomService.getBookingHistoryInfo()).thenReturn(new ArrayList<>());
     MockHttpServletRequestBuilder requestBuilder =
         MockMvcRequestBuilders.get("/workspot/room/bookings");
 
-    // Act and Assert
     MockMvcBuilders.standaloneSetup(meetingRoomBookingsController)
         .build()
         .perform(requestBuilder)
@@ -141,10 +129,9 @@ class MeetingRoomBookingsControllerDiffblueTest {
         .andExpect(MockMvcResultMatchers.content().string("[]"));
   }
 
-  /** Method under test: {@link MeetingRoomBookingsController#isRoomAvailable()} */
   @Test
   void testIsRoomAvailable() {
-    // Arrange, Act and Assert
+
     assertEquals("roomAvailable", (new MeetingRoomBookingsController()).isRoomAvailable());
   }
 }

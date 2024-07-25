@@ -1,6 +1,7 @@
 package com.meetingRoomBooking.interceptor;
 
 import com.meetingRoomBooking.context.ContextDetails;
+import com.meetingRoomBooking.exceptions.MeetingRoomBookingException;
 import com.meetingRoomBooking.utilities.DateTimeUtility;
 import com.meetingRoomBooking.utilities.DateValidator;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,10 +24,8 @@ public class RequestInterceptor implements HandlerInterceptor {
   @Autowired private ContextDetails ctx;
 
   @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-      throws Exception {
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws MeetingRoomBookingException {
 
-    log.info("i'm here");
     if(this.isHealthEndPoint(request)) return true;
 
     String empyId = request.getParameter("empId");
@@ -37,12 +36,10 @@ public class RequestInterceptor implements HandlerInterceptor {
 
     if (Objects.isNull(floorNumber) && Objects.nonNull(roomNumber)
         || Objects.isNull(roomNumber) && Objects.nonNull(floorNumber)) {
-      log.error("raise exception");
-      return false;
+      throw  new MeetingRoomBookingException("For Meeting Room info, Floor number and Room should be passed together");
     }
     if(Objects.nonNull(date) && !DateValidator.isValidDate(date)) {
-      log.error("date is improper format");
-      return false;
+      throw  new MeetingRoomBookingException("Date is invalid format ");
     }
 
     this.ctx.setEmpId(Objects.isNull(empyId) ? null : Integer.parseInt(empyId));

@@ -1,6 +1,7 @@
 package com.meetingRoomBooking.interceptor;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.atLeast;
@@ -9,6 +10,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import com.meetingRoomBooking.context.ContextDetails;
+import com.meetingRoomBooking.exceptions.MeetingRoomBookingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,7 +31,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(classes = {RequestInterceptor.class})
 @ExtendWith(SpringExtension.class)
 @DisabledInAotMode
-class RequestInterceptorDiffblueTest {
+class RequestInterceptorTest {
   @MockBean private ContextDetails contextDetails;
 
   @Autowired private RequestInterceptor requestInterceptor;
@@ -39,7 +41,7 @@ class RequestInterceptorDiffblueTest {
    * Object)}
    */
   @Test
-  void testPreHandle() throws Exception {
+  void testPreHandle() throws MeetingRoomBookingException {
     // Arrange
     doNothing().when(contextDetails).setDate(Mockito.<LocalDate>any());
     doNothing().when(contextDetails).setDays(Mockito.<Integer>any());
@@ -66,20 +68,18 @@ class RequestInterceptorDiffblueTest {
    * Object)}
    */
   @Test
-  void testPreHandle2() throws Exception {
+  void testPreHandle2() throws MeetingRoomBookingException {
     // Arrange
     HttpServletRequestWrapper request = mock(HttpServletRequestWrapper.class);
     when(request.getParameter(Mockito.<String>any())).thenReturn("Parameter");
     when(request.getRequestURI()).thenReturn("https://example.org/example");
 
-    // Act
-    boolean actualPreHandleResult =
-        requestInterceptor.preHandle(request, new Response(), "Handler");
-
-    // Assert
+    // Act and Assert
+    assertThrows(
+        MeetingRoomBookingException.class,
+        () -> requestInterceptor.preHandle(request, new Response(), "Handler"));
     verify(request, atLeast(1)).getParameter(Mockito.<String>any());
     verify(request).getRequestURI();
-    assertFalse(actualPreHandleResult);
   }
 
   /**
@@ -87,7 +87,7 @@ class RequestInterceptorDiffblueTest {
    * Object)}
    */
   @Test
-  void testPreHandle3() throws Exception {
+  void testPreHandle3() throws MeetingRoomBookingException {
     // Arrange
     HttpServletRequestWrapper request = mock(HttpServletRequestWrapper.class);
     when(request.getRequestURI()).thenReturn("health");

@@ -6,8 +6,8 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class DateTimeUtilityDiffblueTest {
-  /** Method under test: {@link DateTimeUtility#convertStringToLocalTime(String)} */
+class DateTimeUtilityTest {
+
   @Test
   @Disabled("TODO: Complete this test")
   void testConvertStringToLocalTime() {

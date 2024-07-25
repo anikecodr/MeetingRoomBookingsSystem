@@ -40,7 +40,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @DisabledInAotMode
-class MeetingRoomServiceImplDiffblueTest {
+class MeetingRoomServiceImplTest {
   @MockBean private ContextDetails contextDetails;
 
   @MockBean private MeetingRoomBookingReferences meetingRoomBookingReferences;

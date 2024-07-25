@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-class DateValidatorDiffblueTest {
+class DateValidatorTest {
   /** Method under test: {@link DateValidator#isValidDate(String)} */
   @Test
   void testIsValidDate() {

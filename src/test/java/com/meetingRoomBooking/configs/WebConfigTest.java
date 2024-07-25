@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 import com.meetingRoomBooking.interceptor.RequestInterceptor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 @ContextConfiguration(classes = {WebConfig.class})
 @ExtendWith(SpringExtension.class)
 @DisabledInAotMode
-class WebConfigDiffblueTest {
+class WebConfigTest {
   @MockBean private RequestInterceptor requestInterceptor;
 
   @Autowired private WebConfig webConfig;
@@ -28,15 +29,13 @@ class WebConfigDiffblueTest {
   /** Method under test: {@link WebConfig#addInterceptors(InterceptorRegistry)} */
   @Test
   void testAddInterceptors() {
-    // Arrange
+
     InterceptorRegistry registry = mock(InterceptorRegistry.class);
     when(registry.addInterceptor(Mockito.<HandlerInterceptor>any()))
         .thenReturn(new InterceptorRegistration(new RequestInterceptor()));
 
-    // Act
     webConfig.addInterceptors(registry);
 
-    // Assert that nothing has changed
     verify(registry).addInterceptor(isA(HandlerInterceptor.class));
   }
 }

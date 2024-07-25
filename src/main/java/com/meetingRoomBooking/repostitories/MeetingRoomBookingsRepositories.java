@@ -16,27 +16,27 @@ public interface MeetingRoomBookingsRepositories
 
   @Query(
       value =
-          "SELECT * FROM meeting_room_booking_info WHERE date BETWEEN CURDATE() and DATE_ADD(CURDATE(), INTERVAL :days DAY)",
+          "SELECT * FROM meeting_room_booking WHERE date BETWEEN CURDATE() and DATE_ADD(CURDATE(), INTERVAL :days DAY)",
       nativeQuery = true)
   public List<MeetingRoomBookings> findBookingsForNextdays(@Param("days") int days);
 
   @Query(
-      value = "SELECT * FROM meeting_room_booking_info WHERE date >=CURDATE()",
+      value = "SELECT * FROM meeting_room_booking WHERE date >=CURDATE()",
       nativeQuery = true)
   public List<MeetingRoomBookings> findAllBookingsFromCurrentDate();
 
   @Query(
-          value = "SELECT * FROM meeting_room_booking_info where emp_id = :empId",
+          value = "SELECT * FROM meeting_room_booking where emp_id = :empId",
           nativeQuery = true)
   public List<MeetingRoomBookings> findBookingsForEmployee(int empId);
 
   @Query(
-          value = "SELECT * FROM meeting_room_booking_info WHERE date = :date",
+          value = "SELECT * FROM meeting_room_booking WHERE date = :date",
           nativeQuery = true)
   public List<MeetingRoomBookings> findBookingsForDate(LocalDate date);
 
   @Query(
-          value = "SELECT * FROM meeting_room_booking_info WHERE floor_num = :floorNumber and room_num = :roomNumber and date = :date",
+          value = "SELECT * FROM meeting_room_booking WHERE floor_num = :floorNumber and room_num = :roomNumber and date = :date",
           nativeQuery = true)
   public List<MeetingRoomBookings> findBookingsWithRoomDetailsAndDate(int floorNumber, int roomNumber, LocalDate date);
 
