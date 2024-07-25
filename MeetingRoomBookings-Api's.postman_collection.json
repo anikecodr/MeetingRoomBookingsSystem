@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "5dd3403e-afc5-4e82-8653-386bc97cc5c6",
+		"name": "MeetingRoomBookings-Api's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32476731"
+	},
+	"item": [
+		{
+			"name": "create-booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"empId\": 980,\r\n    \"empName\": \"Suresh \",\r\n    \"roomNumber\": 5,\r\n    \"floorNumber\": 2,\r\n    \"date\": \"2024-07-30\",\r\n    \"startTime\": \"19:30\",\r\n    \"endTime\": \"20:30\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/room/create-booking",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"room",
+						"create-booking"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ReservedStatus",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"empId\": 470,\r\n    \"empName\": \"Anish\",\r\n    \"roomNumber\": 5,\r\n    \"floorNumber\": 2,\r\n    \"date\": \"2024-07-28\",\r\n    \"startTime\": \"17:30\",\r\n    \"endTime\": \"20:30\",\r\n    \"reservationStatus\": \"Reserved\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/room/create-booking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"room",
+								"create-booking"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 24 Jul 2024 03:05:52 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bookingId\": 252,\n    \"status\": \"Reserved\"\n}"
+				}
+			]
+		},
+		{
+			"name": "getBookedRooms",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "getAllBookingsForEmployee(History)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/room/bookings?empId=876",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"room",
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2024-07-30",
+									"disabled": true
+								},
+								{
+									"key": "empId",
+									"value": "876"
+								},
+								{
+									"key": "floorNumber",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "roomNumber",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "floorNumber",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 24 Jul 2024 15:24:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bookedRoomInfoList\": [\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 7,\n            \"date\": \"2024-07-27\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"08:30:00\",\n                    \"endTime\": \"10:00:00\"\n                }\n            ]\n        },\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 7,\n            \"date\": \"2024-07-28\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"08:30:00\",\n                    \"endTime\": \"10:00:00\"\n                }\n            ]\n        },\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 7,\n            \"date\": \"2024-07-29\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"08:30:00\",\n                    \"endTime\": \"10:00:00\"\n                }\n            ]\n        },\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 7,\n            \"date\": \"2024-07-30\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"08:30:00\",\n                    \"endTime\": \"10:00:00\"\n                }\n            ]\n        }\n    ],\n    \"roomBookingsList\": [\n        {\n            \"bookingId\": 10,\n            \"empId\": 876,\n            \"empName\": \"Kamlesh \",\n            \"roomNumber\": 7,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-27\",\n            \"startTime\": \"08:30:00\",\n            \"endTime\": \"10:00:00\",\n            \"reservationStatus\": \"Booked\"\n        },\n        {\n            \"bookingId\": 11,\n            \"empId\": 876,\n            \"empName\": \"Kamlesh \",\n            \"roomNumber\": 7,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-28\",\n            \"startTime\": \"08:30:00\",\n            \"endTime\": \"10:00:00\",\n            \"reservationStatus\": \"Booked\"\n        },\n        {\n            \"bookingId\": 12,\n            \"empId\": 876,\n            \"empName\": \"Kamlesh \",\n            \"roomNumber\": 7,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-29\",\n            \"startTime\": \"08:30:00\",\n            \"endTime\": \"10:00:00\",\n            \"reservationStatus\": \"Booked\"\n        },\n        {\n            \"bookingId\": 13,\n            \"empId\": 876,\n            \"empName\": \"Kamlesh \",\n            \"roomNumber\": 7,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-30\",\n            \"startTime\": \"08:30:00\",\n            \"endTime\": \"10:00:00\",\n            \"reservationStatus\": \"Booked\"\n        }\n    ],\n    \"roomInfo\": [\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 5,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 5,\n            \"capacity\": 6\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 5,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 5,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 5,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 6,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 6,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 6,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 6,\n            \"capacity\": 12\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 6,\n            \"capacity\": 15\n        },\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 10,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 10,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 10,\n            \"capacity\": 12\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 10,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 10,\n            \"capacity\": 15\n        }\n    ]\n}"
+				},
+				{
+					"name": "fetchBookingsForDate",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/room/bookings?date=2024-07-28",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"room",
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2024-07-28"
+								},
+								{
+									"key": "empId",
+									"value": "876",
+									"disabled": true
+								},
+								{
+									"key": "floorNumber",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "roomNumber",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "floorNumber",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 24 Jul 2024 15:24:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bookedRoomInfoList\": [\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 7,\n            \"date\": \"2024-07-28\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"08:30:00\",\n                    \"endTime\": \"10:00:00\"\n                }\n            ]\n        },\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 6,\n            \"date\": \"2024-07-28\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"09:30:00\",\n                    \"endTime\": \"10:00:00\"\n                }\n            ]\n        },\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 5,\n            \"date\": \"2024-07-28\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"19:30:00\",\n                    \"endTime\": \"20:30:00\"\n                },\n                {\n                    \"startTime\": \"17:30:00\",\n                    \"endTime\": \"20:30:00\"\n                }\n            ]\n        }\n    ],\n    \"roomBookingsList\": [\n        {\n            \"bookingId\": 11,\n            \"empId\": 876,\n            \"empName\": \"Kamlesh \",\n            \"roomNumber\": 7,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-28\",\n            \"startTime\": \"08:30:00\",\n            \"endTime\": \"10:00:00\",\n            \"reservationStatus\": \"Booked\"\n        },\n        {\n            \"bookingId\": 53,\n            \"empId\": 980,\n            \"empName\": \"Ramesh \",\n            \"roomNumber\": 6,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-28\",\n            \"startTime\": \"09:30:00\",\n            \"endTime\": \"10:00:00\",\n            \"reservationStatus\": \"Booked\"\n        },\n        {\n            \"bookingId\": 54,\n            \"empId\": 980,\n            \"empName\": \"Ramesh \",\n            \"roomNumber\": 5,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-28\",\n            \"startTime\": \"19:30:00\",\n            \"endTime\": \"20:30:00\",\n            \"reservationStatus\": \"Booked\"\n        },\n        {\n            \"bookingId\": 252,\n            \"empId\": 470,\n            \"empName\": \"Anish\",\n            \"roomNumber\": 5,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-28\",\n            \"startTime\": \"17:30:00\",\n            \"endTime\": \"20:30:00\",\n            \"reservationStatus\": \"Reserved\"\n        }\n    ],\n    \"roomInfo\": [\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 5,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 5,\n            \"capacity\": 6\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 5,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 5,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 5,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 6,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 6,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 6,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 6,\n            \"capacity\": 12\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 6,\n            \"capacity\": 15\n        },\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 10,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 10,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 10,\n            \"capacity\": 12\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 10,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 10,\n            \"capacity\": 15\n        }\n    ]\n}"
+				},
+				{
+					"name": "getAllBookingsForDateForRoom",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/room/bookings?date=2024-07-30&floorNumber=2&roomNumber=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"room",
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2024-07-30"
+								},
+								{
+									"key": "empId",
+									"value": "876",
+									"disabled": true
+								},
+								{
+									"key": "floorNumber",
+									"value": "2"
+								},
+								{
+									"key": "roomNumber",
+									"value": "5"
+								},
+								{
+									"key": "floorNumber",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 24 Jul 2024 15:25:44 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bookedRoomInfoList\": [\n        {\n            \"floorNumber\": 2,\n            \"roomNumber\": 5,\n            \"date\": \"2024-07-30\",\n            \"reservedTimeSlots\": [\n                {\n                    \"startTime\": \"19:30:00\",\n                    \"endTime\": \"20:30:00\"\n                }\n            ]\n        }\n    ],\n    \"roomBookingsList\": [\n        {\n            \"bookingId\": 102,\n            \"empId\": 980,\n            \"empName\": \"Suresh \",\n            \"roomNumber\": 5,\n            \"floorNumber\": 2,\n            \"date\": \"2024-07-30\",\n            \"startTime\": \"19:30:00\",\n            \"endTime\": \"20:30:00\",\n            \"reservationStatus\": \"Booked\"\n        }\n    ],\n    \"roomInfo\": [\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 5,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 5,\n            \"capacity\": 6\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 5,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 5,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 5,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 6,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 6,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 6,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 6,\n            \"capacity\": 12\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 6,\n            \"capacity\": 15\n        },\n        {\n            \"roomNumber\": 1,\n            \"floorNumber\": 10,\n            \"capacity\": 4\n        },\n        {\n            \"roomNumber\": 2,\n            \"floorNumber\": 10,\n            \"capacity\": 8\n        },\n        {\n            \"roomNumber\": 3,\n            \"floorNumber\": 10,\n            \"capacity\": 12\n        },\n        {\n            \"roomNumber\": 4,\n            \"floorNumber\": 10,\n            \"capacity\": 10\n        },\n        {\n            \"roomNumber\": 5,\n            \"floorNumber\": 10,\n            \"capacity\": 15\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "reservedSeat",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"bookingId\": 52,\r\n    \"reservationStatus\":\"Reserved\"\r\n \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/room/confirm-seat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"room",
+						"confirm-seat"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "reservedSeat",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"bookingId\": 52,\r\n    \"reservationStatus\":\"Reserved\"\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/room/confirm-seat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"room",
+								"confirm-seat"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 24 Jul 2024 02:57:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bookingId\": 52,\n    \"status\": \"Reserved\"\n}"
+				}
+			]
+		}
+	]
+}
